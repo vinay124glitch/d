@@ -838,7 +838,7 @@ section.reveal {
     gap: 1rem;
   }
 }
-/* HERO with starfield */
+/* HERO styling with radial glow */
 .hero {
   position: relative;
   height: 100vh;
@@ -848,51 +848,36 @@ section.reveal {
   justify-content: center;
   color: #047857;
   text-align: center;
+  background-color: #000000;
 }
 
-.hero-video {
+.hero::before {
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  background: radial-gradient(circle at center, rgba(4, 120, 87, 0.2) 0%, transparent 70%);
   z-index: 0;
-  opacity: 0.3; /* adjust for readability */
+  animation: heroPulse 8s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes heroPulse {
+  0% {
+    opacity: 0.5;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
 }
 
 .hero-content {
   position: relative;
   z-index: 1;
-}
-
-
-.star-layer,
-.star-layer2 {
-  position: absolute;
-  width: 200%;
-  height: 200%;
-  top: -50%;
-  left: -50%;
-  background: transparent url('images/SPACE.png') repeat;
-  animation: scrollStars 120s linear infinite;
-  z-index: 1;
-  opacity: 0.4;
-}
-
-.star-layer2 {
-  background-image: url('images/STAR.png');
-  animation-duration: 180s;
-  opacity: 0.2;
-}
-
-@keyframes scrollStars {
-  from {
-    transform: translateY(0);
-  }
-  to {
-    transform: translateY(-1000px);
-  }
 }
 .hamburger {
   display: none;
